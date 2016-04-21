@@ -1,0 +1,250 @@
+#:kivy 1.9.1
+
+<BaseBtn>:
+    value: self.value
+    background_color: 0.494, 0.341, 0.761, 1  # 7e57c2
+    background_normal: '' #'res/img/white.png'
+    background_down: 'res/img/grey.png'
+    color: 0.9,0.9,0.9,1  # white
+    font_size: 50
+    -font_name: 'res/fonts/DejaVuSans.ttf'
+
+<BasePanBtn>:
+    background_color: 0.69, 0.894, 0.341, 1
+    color: 0.3,0.3,0.3,1  # grey
+    disabled: True
+
+<RightPanel>:
+    background_normal: ''
+    background_down: ''
+    size: 1000, root.height
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: 0.69, 0.894, 0.341, 1  # b0e457
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BasePanBtn:
+        id: pi
+        size: root.width / 3, root.height / 5
+        pos: root.pos
+        value: 'pi'
+        text: '\u03C0'
+
+
+<CalculatorGui>:
+    canvas.before:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    textline: input
+    answerline: output
+    rp: rp
+
+    MathInput:
+        id: input
+        text: '2+2\u00D72'
+        focus: True
+        font_size: 72
+        multiline: False
+        size: root.width, root.height / 8
+        center_y: root.height / 4 * 3 + self.height / 2
+
+
+    Label:
+        id: output
+        font_size: 50
+        text: '6.0'
+        halign: 'left'
+        top: root.top - 15
+        color: 0.357, 0.357, 0.357, 1
+        disabled_color: 0.357, 0.357, 0.357, 1
+        center_x: root.width / 2
+
+    # first row ----------------------------------
+    BaseBtn:
+        id: zero
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 - self.width / 2
+        center_y: self.height / 2
+        value: '0'
+        text: '0'
+
+    BaseBtn:
+        id: dot
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 + self.width / 2
+        center_y: self.height / 2
+        value: '.'
+        text: '.'
+
+
+    ControlBtn:
+        id: equal
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 - self.width / 2
+        center_y: self.height / 2
+        text: '='
+        typebtn: 'eval'
+
+    BaseBtn:
+        id: add
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 + self.width / 2
+        center_y: self.height / 2
+        value: '+'
+        text: '+'
+        background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
+
+    # second row ----------------------------------
+    BaseBtn:
+        id: one
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 - self.width / 2
+        center_y: self.height / 2 + root.height / 8
+        value: '1'
+        text: '1'
+
+    BaseBtn:
+        id: two
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 + self.width / 2
+        center_y: self.height / 2 + root.height / 8
+        value: '2'
+        text: '2'
+
+
+    BaseBtn:
+        id: three
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 - self.width / 2
+        center_y: self.height / 2 + root.height / 8
+        value: '3'
+        text: '3'
+
+    BaseBtn:
+        id: sub
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 + self.width / 2
+        center_y: self.height / 2 + root.height / 8
+        value: '-'
+        text: '\u2212'
+        background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
+
+    # third row ----------------------------------
+    BaseBtn:
+        id: one
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 - self.width / 2
+        center_y: self.height / 2 + root.height / 4
+        value: '4'
+        text: '4'
+
+    BaseBtn:
+        id: two
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 + self.width / 2
+        center_y: self.height / 2 + root.height / 4
+        value: '5'
+        text: '5'
+
+
+    BaseBtn:
+        id: three
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 - self.width / 2
+        center_y: self.height / 2 + root.height / 4
+        value: '6'
+        text: '6'
+
+    BaseBtn:
+        id: mul
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 + self.width / 2
+        center_y: self.height / 2 + root.height / 4
+        value: '\u00D7'
+        text: '\u00D7'  # multiplication sign
+        background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
+
+    # fourth row ----------------------------------
+    BaseBtn:
+        id: seven
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 - self.width / 2
+        center_y: self.height / 2 + root.height / 8 * 3
+        value: '7'
+        text: '7'
+
+    BaseBtn:
+        id: eight
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 + self.width / 2
+        center_y: self.height / 2 + root.height / 8 * 3
+        value: '8'
+        text: '8'
+
+
+    BaseBtn:
+        id: nine
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 - self.width / 2
+        center_y: self.height / 2 + root.height / 8 * 3
+        value: '9'
+        text: '9'
+
+    BaseBtn:
+        id: div
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 + self.width / 2
+        center_y: self.height / 2 + root.height / 8 * 3
+        value: '/'
+        text: '\u00F7'  # division sign
+        background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
+
+
+    # fifth row ----------------------------------
+    BaseBtn:
+        id: left_br
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 - self.width / 2
+        center_y: self.height / 2 + root.height / 2
+        value: '('
+        text: '('
+
+    BaseBtn:
+        id: right_br
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 3 + self.width / 2
+        center_y: self.height / 2 + root.height / 2
+        value: ')'
+        text: ')'
+
+
+    ControlBtn:
+        id: clc
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 - self.width / 2
+        center_y: self.height / 2 + root.height / 2
+        value: 'C'
+        text: 'C'
+        typebtn: 'clc'
+
+    ControlBtn:
+        id: del
+        size: root.width / 5, root.height / 8
+        center_x: root.width / 10 * 7 + self.width / 2
+        center_y: self.height / 2 + root.height / 2
+        text: '\u232B'
+        typebtn: 'del'
+        background_color: 0.427, 0.298, 0.667, 1
+
+
+    RightPanel:
+        id: rp
+        size: root.width, root.height / 8 * 5
+        pos: root.width - root.width / 10, 0

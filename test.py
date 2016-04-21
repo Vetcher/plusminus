@@ -5,6 +5,7 @@ from math import *
 
 
 class MyTestCase(unittest.TestCase):
+
     # test Expression tree and calc_operands
     def test_expression(self):
         values = list()
@@ -45,6 +46,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(tree.calc(), expression)
 
     def test_signs(self):
+        result = et.make_expression_array('')
+        tree = et.make_expression_tree(result)
+        self.assertEqual(tree.calc(), None)
+
         result = et.make_expression_array('15+3')
         tree = et.make_expression_tree(result)
         self.assertEqual(tree.calc(), 15.0+3.0)

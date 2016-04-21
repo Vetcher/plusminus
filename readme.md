@@ -16,7 +16,10 @@ tree = expression_tree.make_expression_tree(result)
 print(tree.calc())
 ```
 
-output: `16.0`
+output:
+```
+16.0
+```
 
 ## Supported constants
 

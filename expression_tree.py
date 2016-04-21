@@ -17,6 +17,8 @@ class ExpressionTree(object):
     def calc(self):
         if self.right is None and self.left is None:
             return self.data
+        if self.right is None or self.left is None:
+            return None
         return self.data(self.left, self.right)
 
 
@@ -45,7 +47,7 @@ def strings_to_functions(strings):
 
 # Tokenize text and reorganize it for future tree creating
 def make_expression_array(string):
-    result = re.findall(r"(\b\w*[\.]?\w+\b|[\(\)\+\*\-\/\,\^])", string)
+    result = re.findall(r"(\b\w*[\.]?\w+\b|[\(\)\+\*\-\/\,\^\u00D7])", string)
     prmk = PriorityMaker(result)
     result = prmk.delete_parenthesis()
     result = delete_commas(result)
