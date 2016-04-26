@@ -17,7 +17,7 @@
 <RightPanel>:
     background_normal: ''
     background_down: ''
-    size: 1000, root.height
+    size: self.parent.width / 10, root.height
     pos: self.pos
     canvas:
         Color:
@@ -27,11 +27,74 @@
             size: self.size
 
     BasePanBtn:
-        id: pi
+        id: tg
         size: root.width / 3, root.height / 5
         pos: root.pos
+        value: 'tg('
+        text: 'tg'
+
+    BasePanBtn:
+        id: e
+        size: root.width / 3, root.height / 5
+        pos: root.x + root.width / 3, root.y
+        value: 'ctg('
+        text: 'ctg'
+
+    BasePanBtn:
+        id: pi
+        size: root.width / 3, root.height / 5
+        pos: root.x, root.y + root.height / 5
+        value: 'ln('
+        text: 'ln'
+
+    BasePanBtn:
+        id: ln
+        size: root.width / 3, root.height / 5
+        pos: root.x + root.width / 3, root.y + root.height / 5
+        value: 'lg('
+        text: 'lg'
+
+    BasePanBtn:
+        id: sin
+        size: root.width / 3, root.height / 5
+        pos: root.x, root.y + root.height / 5 * 2
+        value: 'sin('
+        text: 'sin'
+
+    BasePanBtn:
+        id: ln
+        size: root.width / 3, root.height / 5
+        pos: root.x + root.width / 3, root.y + root.height / 5 * 2
+        value: 'cos('
+        text: 'cos'
+
+    BasePanBtn:
+        id: pi
+        size: self.parent.width / 3, self.parent.height / 5
+        pos: root.x, root.y + root.height / 5 * 3
         value: 'pi'
-        text: '\u03C0'
+        text: u'\u03C0'
+
+    BasePanBtn:
+        id: e
+        size: root.width / 3, root.height / 5
+        pos: root.x + root.width / 3, root.y + root.height / 5 * 3
+        value: 'e'
+        text: 'e'
+
+    BasePanBtn:
+        id: abs
+        size: self.parent.width / 3, self.parent.height / 5
+        pos: root.x, root.y + root.height / 5 * 4
+        value: 'abs('
+        text: 'abs'
+
+    BasePanBtn:
+        id: nothing
+        size: root.width / 3, root.height / 5
+        pos: root.x + root.width / 3, root.y + root.height / 5 * 4
+        value: ''
+        text: ''
 
 
 <CalculatorGui>:
@@ -48,23 +111,23 @@
 
     MathInput:
         id: input
-        text: '2+2\u00D72'
+        text: u'2+2\u00D72'
         focus: True
         font_size: 72
         multiline: False
         size: root.width, root.height / 8
         center_y: root.height / 4 * 3 + self.height / 2
-
+        padding: [0, (self.height - self.line_height)/2, 0, 0]
 
     Label:
         id: output
         font_size: 50
         text: '6.0'
         halign: 'left'
-        top: root.top - 15
         color: 0.357, 0.357, 0.357, 1
         disabled_color: 0.357, 0.357, 0.357, 1
         center_x: root.width / 2
+        center_y: root.height / 20 * 19
 
     # first row ----------------------------------
     BaseBtn:
@@ -133,7 +196,7 @@
         center_x: root.width / 10 * 7 + self.width / 2
         center_y: self.height / 2 + root.height / 8
         value: '-'
-        text: '\u2212'
+        text: u'\u2212'
         background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
 
     # third row ----------------------------------
@@ -167,8 +230,8 @@
         size: root.width / 5, root.height / 8
         center_x: root.width / 10 * 7 + self.width / 2
         center_y: self.height / 2 + root.height / 4
-        value: '\u00D7'
-        text: '\u00D7'  # multiplication sign
+        value: u'*'
+        text: u'\u00D7'  # multiplication sign
         background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
 
     # fourth row ----------------------------------
@@ -203,7 +266,7 @@
         center_x: root.width / 10 * 7 + self.width / 2
         center_y: self.height / 2 + root.height / 8 * 3
         value: '/'
-        text: '\u00F7'  # division sign
+        text: u'\u00F7'  # division sign
         background_color: 0.427, 0.298, 0.667, 1  # 6d4caa
 
 
@@ -239,7 +302,7 @@
         size: root.width / 5, root.height / 8
         center_x: root.width / 10 * 7 + self.width / 2
         center_y: self.height / 2 + root.height / 2
-        text: '\u232B'
+        text: u'\u232B'
         typebtn: 'del'
         background_color: 0.427, 0.298, 0.667, 1
 

@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.config import Config
-from kivy.properties import ObjectProperty, ListProperty
+# from kivy.properties import ObjectProperty, ListProperty
 import expression_tree as et
 
 
@@ -13,12 +13,14 @@ class RightPanel(Button):
     def on_press(self):
         if self.isopened:
             self.x = self.parent.width - self.parent.width / 10
+            self.width = self.parent.width - self.x
             for each in self.walk(restrict=True):
                 if each is not self:
                     each.disabled = True
 
         else:
             self.x = self.parent.width / 3 * 2 - self.parent.width / 10
+            self.width = self.parent.width - self.x
             for each in self.walk(restrict=True):
                 if each is not self:
                     each.disabled = False
@@ -33,6 +35,7 @@ class BaseBtn(Button):
 class BasePanBtn(BaseBtn):
     def on_press(self):
         self.parent.parent.textline.input(self.value)
+        self.parent.on_press()
 
 
 class ControlBtn(BaseBtn):
