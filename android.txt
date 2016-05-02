@@ -1,0 +1,3 @@
+title=Plus Minus
+author=Vetcher
+orientation=portrait

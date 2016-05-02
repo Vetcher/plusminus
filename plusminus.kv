@@ -1,0 +1,129 @@
+#: kivy 1.9.1
+#:import SingleLineTextField kivymd.textfields.SingleLineTextField
+#:import ThemeManager kivymd.theming.ThemeManager
+#:import MDSwitch kivymd.selectioncontrols.MDSwitch
+#:import MDFlatButton kivymd.button
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import colors kivymd.color_definitions.colors
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import * numpad
+
+<RIghtPanelBtn@MDFlatButton>:
+    invalue: ''
+    text: self.invalue
+    size_hint: 1, 1
+    on_release: app.btn_input_text(self.invalue, True)
+
+<RightPanel>:
+    size: dp(150), dp(150)
+    GridLayout:
+        cols: 2
+        size: root.size
+        # ------------------------------- 5 line
+        RIghtPanelBtn:
+            invalue: 'e'
+        RIghtPanelBtn:
+            invalue: 'pi'
+            text: u'\u03C0'
+        RIghtPanelBtn:
+            invalue: 'ln('
+            text: 'ln'
+        RIghtPanelBtn:
+            invalue: 'lg('
+            text: 'lg'
+    # ------------------------------- 4 line
+        RIghtPanelBtn:
+            invalue: 'sin('
+            text: 'sin'
+        RIghtPanelBtn:
+            invalue: 'cos('
+            text: 'cos'
+        RIghtPanelBtn:
+            invalue: 'tg('
+            text: 'tg'
+        RIghtPanelBtn:
+            invalue: 'ctg('
+            text: 'ctg'
+
+
+<PlusMinusMain>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+        ScreenManager:
+            id: scr_mngr
+            Screen:
+                name: 'main_screen'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size: root.size
+                    Toolbar:
+                        title: 'RAD'
+                        right_action_items: [['settings', lambda x: app.toggle_set_screen()]]
+                    BoxLayout:
+                        size_hint: 1, 0.2
+                        padding: dp(15)
+                        MDLabel:
+                            id: outputline
+                            font_style: 'Body1'
+                            theme_text_color: 'Primary'
+                            text: ''
+                            halign: 'right'
+                            font_size: sp(50)
+                    BoxLayout:
+                        size_hint: 1, 0.2
+                        padding: dp(15)
+                        MathTextField:
+                            id: inputline
+                            auto_ev: set_check_2.active
+                            evaluate: app.btn_evaluate
+                            font_size: sp(40)
+                            size_hint: 1, None
+                            height: dp(82)
+                    BoxLayout:
+
+                        size_hint: 1, 1
+                        orientation: 'horizontal'
+                        NumPad:
+                            id: numboard
+                            size: root.size
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint: 0.13, 1
+                            MDRaisedButton:
+                                text: 'C'
+                                on_release: app.btn_clc()
+                                opposite_colors: True
+                                size_hint: 1, 0.2
+                            MDRaisedButton:
+                                id: rightpanel
+                                on_release: app.toggle_right_panel()
+                            MDRaisedButton:
+                                text: '='
+                                on_release: app.btn_evaluate(True)
+                                opposite_colors: True
+                                size_hint: 1, 0.2
+            Screen:
+                name: 'settings_screen'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Toolbar:
+                        id: set_toolbar
+                        title: 'Settings'
+                        pos_hint: {'top': 1}
+                        left_action_items: [['arrow-left', app.toggle_set_screen]]
+                    ScrollView:
+                        do_scroll_x: False
+                        MDList:
+                            id: settings_list
+                            SettingsListItem:
+                                text: "Close secondary panel after click"
+                                RightCheckbox:
+                                    id: set_check_1
+                                    active: False
+                            SettingsListItem:
+                                text: "Auto-evaluation"
+                                RightCheckbox:
+                                    id: set_check_2
+                                    active: False

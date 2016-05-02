@@ -52,3 +52,8 @@ Temporary Items
 
 .idea/*
 __pycache__/*
+
+# ProjectIgnores
+kivymds/*
+
+*.pyc

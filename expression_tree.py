@@ -17,9 +17,10 @@ class ExpressionTree(object):
     def calc(self):
         if self.right is None and self.left is None:
             return self.data
-        if self.right is None or self.left is None:
+        try:
+            return self.data(self.left, self.right)
+        except TypeError:
             return None
-        return self.data(self.left, self.right)
 
 
 def _is_num(x):

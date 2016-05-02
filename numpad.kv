@@ -1,0 +1,62 @@
+#: kivy 1.9.1
+#:import * kivymd.button
+
+<NumBtn@MDFlatButton>:
+    invalue: ''
+    text: self.invalue
+    size_hint: 1, 1
+    on_release: app.btn_input_text(self.invalue)
+
+<NumPad>:
+    GridLayout:
+        cols: 4
+        size: root.size
+    # ------------------------------- 5 line
+        NumBtn:
+            invalue: '('
+        NumBtn:
+            invalue: ')'
+        NumBtn:
+            text: ''
+        NumBtn:
+            text: 'DEL'
+            on_release: app.btn_del_symb()
+    # ------------------------------- 4 line
+        NumBtn:
+            invalue: '7'
+        NumBtn:
+            invalue: '8'
+        NumBtn:
+            invalue: '9'
+        NumBtn:
+            invalue: '/'
+            text: u'\u00F7'
+    # ------------------------------- 3 line
+        NumBtn:
+            invalue: '4'
+        NumBtn:
+            invalue: '5'
+        NumBtn:
+            invalue: '6'
+        NumBtn:
+            invalue: '*'
+            text: u'\u00D7'
+    # ------------------------------- 2 line
+        NumBtn:
+            invalue: '1'
+        NumBtn:
+            invalue: '2'
+        NumBtn:
+            invalue: '3'
+        NumBtn:
+            invalue: '-'
+    # ------------------------------- 1 line
+        NumBtn:
+            invalue: '0'
+        NumBtn:
+            invalue: '.'
+        NumBtn:
+            text: '='
+            on_release: app.btn_evaluate(True)
+        NumBtn:
+            invalue: '+'
