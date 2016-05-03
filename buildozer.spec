@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = Plus Minus
+title = Plus Minus Calculator
 
 # (str) Package name
 package.name = plusminus
@@ -13,10 +13,10 @@ package.domain = vetcher.org
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,ttf
+source.include_exts = py,png,jpg,kv,atlas
 
 # (list) Source files to exclude (let empty to not exclude anything)
-#source.exclude_exts = spec
+#source.exclude_exts = spec, test
 
 # (list) List of directory to exclude (let empty to not exclude anything)
 #source.exclude_dirs = tests, bin
@@ -33,7 +33,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy==master, git+https://github.com/kivymd/KivyMD.git
+requirements = kivy==master, git+https://gitlab.com/kivymd/KivyMD.git
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -43,10 +43,10 @@ requirements = kivy==master, git+https://github.com/kivymd/KivyMD.git
 garden_requirements = recycleview
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = %(source.dir)s/res/presplash.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = %(source.dir)s/res/icon.png
 
 # (str) Supported orientation (one of landscape, portrait or all)
 orientation = portrait

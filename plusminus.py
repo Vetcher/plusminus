@@ -34,6 +34,14 @@ class MathTextField(SingleLineTextField):
 class RightCheckbox(IRightBodyTouch, MDCheckbox):
     pass
 
+colornames = ['Pink', 'Blue', 'Indigo', 'BlueGrey', 'Brown', 'LightBlue',
+         'Purple', 'Grey', 'Yellow', 'LightGreen', 'DeepOrange',
+         'Green', 'Red', 'Teal', 'Orange', 'Cyan', 'Amber',
+         'DeepPurple', 'Lime']
+
+colornums = ['50', '100', '200', '300', '400', '500', '600', '700',
+         '800', '900', 'A100', 'A200', 'A400', 'A700']
+
 class PlusMinusApp(App):
     theme_cls = ThemeManager()
     settoggled = False
@@ -41,10 +49,12 @@ class PlusMinusApp(App):
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
-        self.theme_cls.primary_palette = 'DeepPurple'
-        self.theme_cls.primary_hue = '400'
-        self.theme_cls.accent_palette = 'LightGreen'
-        self.theme_cls.accent_hue = '500'
+        #self.theme_cls.primary_palette = self.curname = 'DeepPurple'
+        #self.theme_cls.primary_hue = self.curnum = '400'
+        self.theme_cls.primary_palette = 'Teal'
+        self.theme_cls.primary_hue = '600'
+        #self.theme_cls.accent_palette = 'LightGreen'
+        #self.theme_cls.accent_hue = '600'
         self.rightpanel = RightPanel()
         main_widget = PlusMinusMain()
         return main_widget
@@ -88,9 +98,32 @@ class PlusMinusApp(App):
 
     def toggle_set_screen(self, event=None):
         if self.settoggled:
+            self.root.ids.maintoolbar.right_action_items = [['settings', lambda x: self.toggle_set_screen()]]
             self.root.ids.scr_mngr.transition.direction = 'right'
             self.root.ids.scr_mngr.current = 'main_screen'
         else:
+            self.root.ids.maintoolbar.right_action_items = [['check', lambda x: self.toggle_set_screen()]]
             self.root.ids.scr_mngr.transition.direction = 'left'
             self.root.ids.scr_mngr.current = 'settings_screen'
         self.settoggled = not self.settoggled
+
+    def nextcolorname(self):
+        try:
+            next_num = colornames.index(self.curname) + 1
+            if next_num == len(colornames):
+                next_num = 0
+            self.curname = colornames[next_num]
+            self.theme_cls.primary_palette = self.curname
+            self.root.ids['clrname'].text = self.curname
+        except KeyError:
+            self.nextcolorname()
+    def nextcolornum(self):
+        try:
+            next_num = colornums.index(self.curnum) + 1
+            if next_num == len(colornums):
+                next_num = 0
+            self.curnum = colornums[next_num]
+            self.theme_cls.primary_hue = self.curnum
+            self.root.ids['clrnum'].text = self.curnum
+        except KeyError:
+            self.nextcolorname()

@@ -44,12 +44,22 @@
         RIghtPanelBtn:
             invalue: 'ctg('
             text: 'ctg'
+        RIghtPanelBtn:
+            invalue: 'log('
+            text: 'log(a,x)'
+        RIghtPanelBtn:
+            invalue: ','
+            text: ','
 
 
 <PlusMinusMain>:
     BoxLayout:
         orientation: 'vertical'
         size: root.size
+        Toolbar:
+            id: maintoolbar
+            title: 'RAD'
+            right_action_items: [['settings', lambda x: app.toggle_set_screen()]]
         ScreenManager:
             id: scr_mngr
             Screen:
@@ -58,9 +68,9 @@
                 BoxLayout:
                     orientation: 'vertical'
                     size: root.size
-                    Toolbar:
-                        title: 'RAD'
-                        right_action_items: [['settings', lambda x: app.toggle_set_screen()]]
+                    #Toolbar:
+                    #    title: 'RAD'
+                    #    right_action_items: [['settings', lambda x: app.toggle_set_screen()]]
                     BoxLayout:
                         size_hint: 1, 0.2
                         padding: dp(15)
@@ -70,7 +80,7 @@
                             theme_text_color: 'Primary'
                             text: ''
                             halign: 'right'
-                            font_size: sp(50)
+                            #font_size: sp(50)
                     BoxLayout:
                         size_hint: 1, 0.2
                         padding: dp(15)
@@ -78,9 +88,9 @@
                             id: inputline
                             auto_ev: set_check_2.active
                             evaluate: app.btn_evaluate
-                            font_size: sp(40)
+                            #font_size: sp(40)
                             size_hint: 1, None
-                            height: dp(82)
+                            height: dp(51)
                     BoxLayout:
 
                         size_hint: 1, 1
@@ -108,11 +118,12 @@
                 name: 'settings_screen'
                 BoxLayout:
                     orientation: 'vertical'
-                    Toolbar:
-                        id: set_toolbar
-                        title: 'Settings'
-                        pos_hint: {'top': 1}
-                        left_action_items: [['arrow-left', app.toggle_set_screen]]
+                    size: root.size
+                    #Toolbar:
+                    #    id: set_toolbar
+                    #    title: 'SETTINGS'
+                    #    pos_hint: {'top': 1}
+                    #    left_action_items: [['arrow-left', lambda x: app.toggle_set_screen()]]
                     ScrollView:
                         do_scroll_x: False
                         MDList:
@@ -127,3 +138,14 @@
                                 RightCheckbox:
                                     id: set_check_2
                                     active: False
+                    #BoxLayout:
+                    #    orientation: 'horizontal'
+                    #    size: root.size
+                    #    MDRaisedButton:
+                    #        id: clrname
+                    #        text: 'Next name'
+                    #        on_release: app.nextcolorname()
+                    #    MDRaisedButton:
+                    #        id: clrnum
+                    #        text: 'Next num'
+                    #        on_release: app.nextcolornum()
